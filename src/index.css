@@ -1,0 +1,150 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Fraunces", "Georgia", serif;
+  --font-sans: "Manrope", "Inter", system-ui, sans-serif;
+
+  --color-ink: #050505;
+  --color-ink-burgundy: #100507;
+  --color-wine-deep: #4a0008;
+  --color-burgundy: #70000d;
+  --color-crimson: #b70018;
+  --color-crimson-strong: #d00020;
+  --color-ember: #ff163d;
+  --color-bone: #f5f1f2;
+  --color-smoke: #a99fa2;
+
+  --animate-fade-up: fade-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+  --animate-fade-in: fade-in 1.1s ease both;
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(28px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+}
+
+@layer base {
+  * {
+    border-color: var(--color-smoke);
+  }
+
+  html {
+    background: var(--color-ink);
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    background: var(--color-ink);
+    color: var(--color-bone);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+
+  ::selection {
+    background: var(--color-crimson-strong);
+    color: var(--color-bone);
+  }
+
+  :focus-visible {
+    outline: 1.5px solid var(--color-ember);
+    outline-offset: 3px;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-ink);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-wine-deep);
+    border-radius: 8px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  .glass-panel {
+    background: linear-gradient(155deg, rgba(245, 241, 242, 0.07), rgba(112, 0, 13, 0.08));
+    backdrop-filter: blur(20px) saturate(140%);
+    -webkit-backdrop-filter: blur(20px) saturate(140%);
+    border: 1px solid rgba(245, 241, 242, 0.12);
+    box-shadow: 0 1px 0 0 rgba(245, 241, 242, 0.08) inset,
+      0 20px 60px -20px rgba(0, 0, 0, 0.7);
+  }
+
+  .glass-panel-strong {
+    background: linear-gradient(155deg, rgba(245, 241, 242, 0.1), rgba(74, 0, 8, 0.22));
+    backdrop-filter: blur(28px) saturate(150%);
+    -webkit-backdrop-filter: blur(28px) saturate(150%);
+    border: 1px solid rgba(245, 241, 242, 0.14);
+    box-shadow: 0 1px 0 0 rgba(245, 241, 242, 0.1) inset,
+      0 24px 70px -24px rgba(0, 0, 0, 0.8);
+  }
+
+  .text-gradient-ember {
+    background: linear-gradient(120deg, var(--color-bone) 0%, var(--color-ember) 120%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-crimson-strong px-8 py-3.5 font-sans text-[13px] font-semibold uppercase tracking-[0.14em] text-bone transition-all duration-300 ease-out hover:bg-ember hover:shadow-[0_0_0_1px_rgba(255,22,61,0.4),0_18px_40px_-12px_rgba(255,22,61,0.55)] active:scale-[0.98];
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-bone/25 bg-transparent px-8 py-3.5 font-sans text-[13px] font-semibold uppercase tracking-[0.14em] text-bone transition-all duration-300 ease-out hover:border-bone/60 hover:bg-bone/5 active:scale-[0.98];
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 font-sans text-[13px] font-semibold uppercase tracking-[0.14em] text-smoke transition-colors duration-300 hover:text-bone;
+  }
+
+  .eyebrow {
+    @apply font-sans text-[11px] font-semibold uppercase tracking-[0.32em] text-smoke;
+  }
+
+  .container-edit {
+    @apply mx-auto w-full max-w-[1360px] px-6 sm:px-10 lg:px-16;
+  }
+
+  .field-input {
+    @apply w-full rounded-xl border border-bone/20 bg-bone/5 px-4 py-3 font-sans text-sm text-bone placeholder:text-smoke/60 transition-colors outline-none focus:border-ember;
+  }
+
+  .field-input[aria-invalid="true"] {
+    @apply border-ember;
+  }
+}

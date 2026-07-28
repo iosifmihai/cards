@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1500">
+  <defs>
+    <radialGradient id="glowNL" cx="50%" cy="38%" r="65%">
+      <stop offset="0%" stop-color="#5a000f" stop-opacity="0.95"/>
+      <stop offset="55%" stop-color="#100507" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#050505" stop-opacity="1"/>
+    </radialGradient>
+    <linearGradient id="boxFaceNL" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#210007"/>
+      <stop offset="55%" stop-color="#0f0004"/>
+      <stop offset="100%" stop-color="#060002"/>
+    </linearGradient>
+    <linearGradient id="boxSideNL" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#050001"/>
+      <stop offset="100%" stop-color="#170007"/>
+    </linearGradient>
+    <linearGradient id="rimNL" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ff163d" stop-opacity="0.65"/>
+      <stop offset="100%" stop-color="#b70018" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="1500" fill="url(#glowNL)"/>
+  <ellipse cx="600" cy="1260" rx="330" ry="46" fill="#000000" opacity="0.6"/>
+  <path d="M310 430 L310 1120 L430 1180 L430 480 Z" fill="url(#boxSideNL)"/>
+  <rect x="430" y="410" width="470" height="770" rx="10" fill="url(#boxFaceNL)" stroke="#ff163d" stroke-opacity="0.4"/>
+  <rect x="430" y="410" width="470" height="770" rx="10" fill="none" stroke="url(#rimNL)" stroke-width="2.5"/>
+  <line x1="430" y1="560" x2="900" y2="560" stroke="#ff163d" stroke-opacity="0.45" stroke-width="1.5"/>
+  <text x="665" y="820" font-family="Georgia, serif" font-size="150" fill="#f5f1f2" text-anchor="middle" opacity="0.95">NL</text>
+  <line x1="580" y1="850" x2="750" y2="850" stroke="#ff163d" stroke-width="1.5" opacity="0.85"/>
+  <text x="665" y="905" font-family="Georgia, serif" font-size="34" letter-spacing="6" fill="#a99fa2" text-anchor="middle">NO LIMITS</text>
+  <g stroke="#ff163d" stroke-opacity="0.18">
+    <line x1="460" y1="620" x2="870" y2="620"/>
+    <line x1="460" y1="1120" x2="870" y2="1120"/>
+  </g>
+  <text x="600" y="1420" font-family="Georgia, serif" font-size="22" letter-spacing="6" fill="#a99fa2" text-anchor="middle" opacity="0.6">NAUGHTY CARDS — PLACEHOLDER VISUAL</text>
+</svg>

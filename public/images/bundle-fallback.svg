@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1200">
+  <defs>
+    <radialGradient id="gb" cx="50%" cy="38%" r="70%">
+      <stop offset="0%" stop-color="#4a0008" stop-opacity="0.85"/>
+      <stop offset="55%" stop-color="#100507"/>
+      <stop offset="100%" stop-color="#050505"/>
+    </radialGradient>
+    <linearGradient id="fA" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a0709"/>
+      <stop offset="100%" stop-color="#070203"/>
+    </linearGradient>
+    <linearGradient id="fB" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#210007"/>
+      <stop offset="100%" stop-color="#060002"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="1200" fill="url(#gb)"/>
+  <ellipse cx="800" cy="1020" rx="480" ry="50" fill="#000" opacity="0.5"/>
+  <rect x="440" y="330" width="360" height="600" rx="10" fill="url(#fA)" stroke="#c97a4a" stroke-opacity="0.35" transform="rotate(-4 620 630)"/>
+  <text x="620" y="660" font-family="Georgia, serif" font-size="110" fill="#f5f1f2" text-anchor="middle" opacity="0.9" transform="rotate(-4 620 630)">SB</text>
+  <rect x="800" y="300" width="360" height="600" rx="10" fill="url(#fB)" stroke="#ff163d" stroke-opacity="0.4" transform="rotate(4 980 600)"/>
+  <text x="980" y="630" font-family="Georgia, serif" font-size="110" fill="#f5f1f2" text-anchor="middle" opacity="0.92" transform="rotate(4 980 600)">NL</text>
+  <text x="800" y="1120" font-family="Georgia, serif" font-size="26" letter-spacing="8" fill="#a99fa2" text-anchor="middle" opacity="0.6">THE COMPLETE NAUGHTY EXPERIENCE — PLACEHOLDER</text>
+</svg>
