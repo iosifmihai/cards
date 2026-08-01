@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="High-Performance Email Marketing for E-commerce Brands." />
+    <title>emails by Andreea</title>
+
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2304060b'/%3E%3Cpath d='M5 10h22v12H5z' fill='none' stroke='%2334d399' stroke-width='2.4'/%3E%3Cpath d='M5 10l11 8 11-8' fill='none' stroke='%2334d399' stroke-width='2.4'/%3E%3C/svg%3E"
+    />
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/anton-latin.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/inter-latin.woff2" crossorigin />
+  </head>
+
+  <body>
+    <!-- film overlays: animated grain (promoted) + static vignette -->
+    <div class="grain" aria-hidden="true"></div>
+    <div class="vignette" aria-hidden="true"></div>
+
+    <div class="loader" id="loader">
+      <div class="loader__bar"><span id="loaderFill"></span></div>
+      <div class="loader__label">emails by Andreea</div>
+    </div>
+
+    <main id="app" data-lenis-content>
+      <!-- ═══════════════ HERO — scroll-scrubbed 360° orbit ═══════════════ -->
+      <section class="hero" id="hero">
+        <div class="hero__sticky">
+          <canvas class="hero__canvas" id="orbitCanvas"></canvas>
+          <div class="hero__scrim" aria-hidden="true"></div>
+
+          <div class="hero__type">
+            <h1 class="wordmark">
+              <span class="wordmark__line" id="wordmarkTop"></span>
+              <span class="wordmark__line wordmark__line--accent" id="wordmarkBottom"></span>
+            </h1>
+            <p class="hero__subtitle" id="heroSubtitle"></p>
+          </div>
+
+          <div class="hero__cue" id="heroCue">
+            <span class="hero__cueLabel"></span>
+            <span class="hero__cueLine"></span>
+          </div>
+
+          <div class="hero__meta">
+            <span id="heroProgress">00</span><span class="hero__metaDim"> / 360°</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════════════════════ STATS ═══════════════════════════════ -->
+      <section class="stats" id="stats">
+        <div class="stats__grid" id="statsGrid"></div>
+      </section>
+
+      <!-- ══════════════════════ THREE PILLARS ════════════════════════════ -->
+      <section class="pillars" id="pillars">
+        <div class="pillars__bg" aria-hidden="true">
+          <div class="holo" id="holoField"></div>
+          <video class="sectionClip" id="builderClip" muted playsinline loop></video>
+        </div>
+        <div class="pillars__sticky">
+          <header class="sectionHead">
+            <span class="eyebrow" id="pillarsEyebrow"></span>
+            <h2 class="sectionHead__title" id="pillarsHeading"></h2>
+          </header>
+          <ol class="pillars__list" id="pillarsList"></ol>
+        </div>
+      </section>
+
+      <!-- ═══════════════════════════ WORK ════════════════════════════════ -->
+      <section class="work" id="work">
+        <div class="work__bg" aria-hidden="true">
+          <div class="gallery" id="galleryField"></div>
+          <video class="sectionClip" id="closerClip" muted playsinline loop></video>
+        </div>
+        <header class="sectionHead sectionHead--work">
+          <span class="eyebrow" id="workEyebrow"></span>
+          <h2 class="sectionHead__title" id="workHeading"></h2>
+        </header>
+        <div class="work__grid" id="workGrid"></div>
+      </section>
+
+      <!-- ══════════════════════════ FINALE ═══════════════════════════════ -->
+      <section class="finale" id="finale">
+        <span class="eyebrow" id="finaleEyebrow"></span>
+        <h2 class="finale__title">
+          <span class="finale__line" id="finaleTop"></span>
+          <span class="finale__line finale__line--accent" id="finaleBottom"></span>
+        </h2>
+        <p class="finale__body" id="finaleBody"></p>
+        <div class="finale__actions" id="finaleActions"></div>
+
+        <footer class="footer">
+          <span class="footer__note" id="footerNote"></span>
+          <nav class="footer__links" id="footerLinks"></nav>
+        </footer>
+      </section>
+    </main>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
