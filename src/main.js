@@ -34,6 +34,9 @@ function splitChars(el, text) {
 
 function buildHero() {
   document.title = brand.documentTitle;
+  document
+    .querySelector('meta[name="description"]')
+    ?.setAttribute('content', brand.metaDescription);
   $('heroSubtitle').textContent = brand.subtitle;
   $('heroCue').querySelector('.hero__cueLabel').textContent = scrollCue;
   return {

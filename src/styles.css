@@ -2,12 +2,31 @@
 /* Self-hosted so the page has zero third-party font dependency and the
    display face is never late — the hero type animation depends on it. */
 
+/* latin-ext carries the Romanian glyphs (Ș ș Ț ț, ă, î, â). Without it
+   "Dezvoltare Copii & Adolescenți" renders its Ț in a fallback face, which is
+   visibly wrong next to Anton. unicode-range means the browser only downloads
+   the ext file on pages that actually need those codepoints. */
+
 @font-face {
   font-family: 'Anton';
   src: url('/fonts/anton-latin.woff2') format('woff2');
   font-weight: 400;
   font-style: normal;
   font-display: block; /* the wordmark must not flash in a fallback face */
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191,
+    U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Anton';
+  src: url('/fonts/anton-latin-ext.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7,
+    U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF,
+    U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 
 @font-face {
@@ -16,6 +35,20 @@
   font-weight: 100 900;
   font-style: normal;
   font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191,
+    U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/inter-latin-ext.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7,
+    U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF,
+    U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 
 /* ═════════════════════════════ tokens & reset ══════════════════════════════ */
@@ -27,10 +60,12 @@
   --navy-lift: #10386c;
   --emerald: #10b981;
   --emerald-bright: #34d399;
-  --cream: #f4efe4;
-  --cream-dim: rgba(244, 239, 228, 0.56);
-  --cream-faint: rgba(244, 239, 228, 0.24);
-  --hair: rgba(244, 239, 228, 0.12);
+  /* #f5f5f0 and #0a2447 are the live site's own cream and navy
+     (--ast-global-color-4 / --ast-global-color-2), so this stays on-brand. */
+  --cream: #f5f5f0;
+  --cream-dim: rgba(245, 245, 240, 0.58);
+  --cream-faint: rgba(245, 245, 240, 0.26);
+  --hair: rgba(245, 245, 240, 0.13);
 
   --display: 'Anton', 'Haettenschweiler', 'Arial Narrow', 'Impact', sans-serif;
   --body: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;

@@ -3,17 +3,15 @@
  *  ALL SITE COPY LIVES HERE. THIS IS THE ONLY FILE YOU NEED TO EDIT.
  * ─────────────────────────────────────────────────────────────────────────────
  *
- *  Transcribed from the emailsbyandreea.com homepage. Two things could not be
- *  read off the page and are still marked ⟨PLACEHOLDER⟩:
+ *  Taken from the emailsbyandreea.com homepage source, so names, URLs and
+ *  figures are exact rather than read off a screenshot.
  *
- *    - the per-brand pitch lines in `work` — the live site shows brand logos
- *      only, with no description attached to any of them, so there is nothing
- *      to transcribe and nothing here is invented on your behalf
- *    - the social URLs in `footer` — the live site renders them as icons, so
- *      the hrefs aren't visible
+ *  One thing is still ⟨PLACEHOLDER⟩: the per-brand pitch lines in `work`. The
+ *  live site shows those logos with no copy attached to any of them, so there
+ *  is nothing to transcribe — and client results are not worth guessing at.
  *
- *  Sections size themselves from array length: add a fourth pillar or a
- *  seventh work card and the layout follows.
+ *  Sections size themselves from array length: add a fourth pillar or an
+ *  eighth work card and the layout follows.
  */
 
 export const brand = {
@@ -21,7 +19,22 @@ export const brand = {
   wordmarkTop: 'emails',
   wordmarkBottom: 'by Andreea',
   subtitle: 'High-Performance Email Marketing for E-commerce Brands',
-  documentTitle: 'emails by Andreea — High-Performance Email Marketing',
+  documentTitle: 'Expert E-commerce Email Marketing — Emails by Andreea',
+  metaDescription:
+    'I architect high-performance email systems to drive retention and boost Customer Lifetime Value. Scale your revenue today.',
+};
+
+/** Canonical destinations, matching the live site's routes. */
+export const links = {
+  home: 'https://emailsbyandreea.com/',
+  about: 'https://emailsbyandreea.com/about/',
+  contact: 'https://emailsbyandreea.com/contact/',
+  services: 'https://emailsbyandreea.com/services/',
+  reviews: 'https://emailsbyandreea.com/reviews/',
+  email: 'mailto:contact@emailsbyandreea.com',
+  instagram: 'https://www.instagram.com/emailsby.andreea/',
+  facebook: 'https://www.facebook.com/profile.php?id=61569190987440',
+  linkedin: 'https://www.linkedin.com/in/andreea-p%C4%83curar-1a7b8924b/',
 };
 
 export const scrollCue = 'scroll';
@@ -99,39 +112,19 @@ export const workSection = {
   heading: 'Brands Managed',
 };
 
+// Order matches the "Brands Managed" carousel on the live site.
 export const work = [
+  { brand: 'SMP Courier', pitch: '⟨PLACEHOLDER⟩ One line on what you did for them.', metric: '' },
+  { brand: 'Obaby', pitch: '⟨PLACEHOLDER⟩ One line on what you did for them.', metric: '' },
+  { brand: 'NOR', pitch: '⟨PLACEHOLDER⟩ One line on what you did for them.', metric: '' },
+  { brand: 'Magnet Travel', pitch: '⟨PLACEHOLDER⟩ One line on what you did for them.', metric: '' },
+  { brand: 'Somproduct', pitch: '⟨PLACEHOLDER⟩ One line on what you did for them.', metric: '' },
   {
-    brand: 'BLENN',
+    brand: 'Dezvoltare Copii & Adolescenți',
     pitch: '⟨PLACEHOLDER⟩ One line on what you did for them.',
     metric: '',
   },
-  {
-    brand: 'SMP Courier',
-    pitch: '⟨PLACEHOLDER⟩ One line on what you did for them.',
-    metric: '',
-  },
-  {
-    brand: 'oBaby',
-    pitch: '⟨PLACEHOLDER⟩ One line on what you did for them.',
-    metric: '',
-  },
-  {
-    brand: 'NOR',
-    pitch: '⟨PLACEHOLDER⟩ One line on what you did for them.',
-    metric: '',
-  },
-  {
-    brand: 'SOMPRODUCT',
-    pitch: '⟨PLACEHOLDER⟩ One line on what you did for them.',
-    metric: '',
-  },
-  {
-    // Sixth logo in the strip is a crest that doesn't resolve at screenshot
-    // resolution — replace with the real name.
-    brand: '⟨PLACEHOLDER⟩ Sixth brand',
-    pitch: '⟨PLACEHOLDER⟩ One line on what you did for them.',
-    metric: '',
-  },
+  { brand: 'BLENN Events', pitch: '⟨PLACEHOLDER⟩ One line on what you did for them.', metric: '' },
 ];
 
 /* ──────────────────────────────── FINALE ─────────────────────────────────── */
@@ -142,17 +135,19 @@ export const finale = {
   headingBottom: 'with me',
   body: 'Let’s discuss how to integrate high-performance email architecture into your brand’s ecosystem to drive sustainable revenue.',
   buttons: [
-    { label: 'Work with me', href: 'https://emailsbyandreea.com/', primary: true },
-    { label: 'Contact me', href: 'https://emailsbyandreea.com/', primary: false },
+    { label: 'Work with me', href: links.contact, primary: true },
+    { label: 'Email me', href: links.email, primary: false },
   ],
 };
 
 export const footer = {
-  note: '© 2026 emails by Andreea',
+  note: '© 2026 Emails by Andreea',
   links: [
-    { label: 'Instagram', href: '⟨PLACEHOLDER⟩' },
-    { label: 'Facebook', href: '⟨PLACEHOLDER⟩' },
-    { label: 'LinkedIn', href: '⟨PLACEHOLDER⟩' },
-    { label: 'Website', href: 'https://emailsbyandreea.com/' },
+    { label: 'Instagram', href: links.instagram },
+    { label: 'Facebook', href: links.facebook },
+    { label: 'LinkedIn', href: links.linkedin },
+    { label: 'Services', href: links.services },
+    { label: 'Reviews', href: links.reviews },
+    { label: 'Contact', href: links.contact },
   ],
 };
