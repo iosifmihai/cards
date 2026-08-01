@@ -49,9 +49,23 @@ function buildStats() {
     const cell = document.createElement('div');
     cell.className = 'stat';
 
+    // `unit` stays in the number's colour (it is part of the magnitude);
+    // only `suffix` takes the accent.
     const value = document.createElement('div');
     value.className = 'stat__value';
-    value.innerHTML = `${s.prefix || ''}<span data-num>0</span><em>${s.suffix || ''}</em>`;
+    const num = document.createElement('span');
+    num.setAttribute('data-num', '');
+    num.textContent = '0';
+
+    const suffix = document.createElement('em');
+    suffix.textContent = s.suffix || '';
+
+    value.append(
+      document.createTextNode(s.prefix || ''),
+      num,
+      document.createTextNode(s.unit || ''),
+      suffix
+    );
 
     const label = document.createElement('div');
     label.className = 'stat__label';
