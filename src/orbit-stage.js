@@ -1,4 +1,5 @@
-import { heroSequence, theme } from './config.js';
+import { heroSequence, heroPhotos, theme } from './config.js';
+import { PhotoSequenceBackend } from './photo-stage.js';
 
 /**
  * three is imported dynamically, and only by ProceduralBackend. It exists
@@ -335,24 +336,55 @@ class ProceduralBackend {
 export class OrbitStage {
   constructor(canvas) {
     this.canvas = canvas;
-    this.backend = heroSequence.useFrames
-      ? new FrameSequenceBackend(canvas)
-      : new ProceduralBackend(canvas);
-    this.usesFrames = heroSequence.useFrames;
+
+    // Photos first, then a rendered frame sequence, then the WebGL stand-in.
+    if (heroPhotos.enabled) {
+      this.backend = new PhotoSequenceBackend(canvas);
+      this.mode = 'photos';
+    } else if (heroSequence.useFrames) {
+      this.backend = new FrameSequenceBackend(canvas);
+      this.mode = 'frames';
+    } else {
+      this.backend = new ProceduralBackend(canvas);
+      this.mode = 'procedural';
+    }
+    this.usesFrames = this.mode !== 'procedural';
   }
 
   async init() {
-    await this.backend.init();
+    try {
+      await this.backend.init();
+    } catch (err) {
+      // A missing or unreadable photo set must not leave a black hero.
+      if (this.mode === 'photos') {
+        console.warn('[hero]', err.message, '— falling back to the WebGL stand-in');
+        this.backend = new ProceduralBackend(this.canvas);
+        this.mode = 'procedural';
+        this.usesFrames = false;
+        await this.backend.init();
+      } else {
+        throw err;
+      }
+    }
     this.resize();
+  }
+
+  /** Number of steps in the hero, for the on-screen readout. */
+  get steps() {
+    return this.backend.count ?? 0;
   }
 
   resize() {
     const native = window.devicePixelRatio || 1;
     // The WebGL stand-in is fill-rate bound across the whole viewport, so it
-    // gets a tighter cap than the frame sequence (a plain 2D blit). At 1.6 the
-    // difference is invisible under the grain, and it cuts fragment work ~35%
-    // versus 2.0 on a retina display.
-    const dpr = this.usesFrames ? Math.min(native, 2) : Math.min(native, 1.6);
+    // gets a tighter cap than the bitmap paths. At 1.6 the difference is
+    // invisible under the grain and cuts fragment work ~35% versus 2.0.
+    // Photos sit between: a plain blit, but with two full-canvas gradient
+    // fills per frame on top.
+    const dpr =
+      this.mode === 'procedural' ? Math.min(native, 1.6)
+      : this.mode === 'photos' ? Math.min(native, 1.75)
+      : Math.min(native, 2);
     const w = this.canvas.clientWidth || window.innerWidth;
     const h = this.canvas.clientHeight || window.innerHeight;
     this.backend.resize(w, h, dpr);

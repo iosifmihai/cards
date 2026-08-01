@@ -386,6 +386,9 @@ async function boot() {
   const orbit = new OrbitStage($('orbitCanvas'));
   await orbit.init();
 
+  $('heroMetaSuffix').textContent =
+    orbit.mode === 'procedural' ? ' / 360°' : ` / ${String(orbit.steps).padStart(2, '0')}`;
+
   $('loaderFill').style.width = '100%';
   setTimeout(() => $('loader').classList.add('is-done'), 320);
 
@@ -419,8 +422,16 @@ async function boot() {
       end: 'bottom bottom',
       scrub: reduceMotion ? true : 0.55,
       onUpdate: (self) => {
-        const deg = Math.round(self.progress * 360);
-        $('heroProgress').textContent = String(deg).padStart(3, '0');
+        // Degrees while the WebGL stand-in is orbiting; a shot counter once
+        // the hero is running on photographs, where degrees mean nothing.
+        if (orbit.mode === 'procedural') {
+          $('heroProgress').textContent =
+            String(Math.round(self.progress * 360)).padStart(3, '0');
+        } else {
+          const n = orbit.steps || 1;
+          const shot = Math.min(n, Math.floor(self.progress * n) + 1);
+          $('heroProgress').textContent = String(shot).padStart(2, '0');
+        }
         $('heroCue').style.opacity = self.progress > 0.04 ? '0' : '1';
       },
     },

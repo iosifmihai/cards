@@ -9,7 +9,8 @@
     "build": "vite build",
     "preview": "vite preview",
     "verify": "node scripts/verify.mjs",
-    "perf": "node scripts/perf.mjs"
+    "perf": "node scripts/perf.mjs",
+    "photos": "node scripts/make-placeholder-photos.mjs"
   },
   "repository": {
     "type": "git",

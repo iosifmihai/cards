@@ -227,6 +227,38 @@ canvas { display: block; }
   height: 100%;
 }
 
+/* Grade layers for the photo hero. These are constant frame to frame — only
+   the photograph beneath them moves — so they are static composited layers
+   rather than per-frame canvas fills, which measured as the dominant cost.
+   Both are centred on the subject (63% across on wide screens), not on the
+   canvas, or the falloff sits off-axis and the studio backdrop survives on
+   one side. */
+
+/* Both effects ride in ONE layer with no blend mode. The obvious spelling is
+   a multiply layer for the vignette plus a screen layer for the rim, but each
+   blended layer is a separate composited surface, and against an already
+   desaturated photograph plain alpha over ink is visually indistinguishable
+   from multiply. First background paints on top, so the emerald sits above the
+   darkening rather than being crushed by it. */
+.hero__vignette {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      circle at 57% 26%,
+      rgba(52, 211, 153, 0.16) 0%,
+      rgba(16, 185, 129, 0.06) 45%,
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 58% 82% at 63% 46%,
+      rgba(4, 6, 11, 0) 0%,
+      rgba(4, 6, 11, 0.06) 26%,
+      rgba(4, 6, 11, 0.62) 62%,
+      rgba(4, 6, 11, 1) 100%
+    );
+}
+
 .hero__scrim {
   position: absolute;
   inset: 0;
@@ -669,6 +701,15 @@ canvas { display: block; }
 
 @media (max-width: 720px) {
   .hero { height: 420vh; }
+  /* subject re-centres below this width (see PhotoSequenceBackend#focus) */
+  .hero__vignette {
+    background:
+      radial-gradient(circle at 46% 26%,
+        rgba(52,211,153,0.16) 0%, rgba(16,185,129,0.06) 45%, transparent 70%),
+      radial-gradient(ellipse 74% 74% at 50% 46%,
+        rgba(4,6,11,0) 0%, rgba(4,6,11,0.06) 26%,
+        rgba(4,6,11,0.62) 62%, rgba(4,6,11,1) 100%);
+  }
   .pillars { height: 300vh; }
   .hero__meta { display: none; }
   .gallery { opacity: 0.4; }

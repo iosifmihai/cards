@@ -31,6 +31,9 @@
       <section class="hero" id="hero">
         <div class="hero__sticky">
           <canvas class="hero__canvas" id="orbitCanvas"></canvas>
+          <!-- Grade layers: identical every frame, so the compositor owns
+               them rather than the canvas redrawing them per tick. -->
+          <div class="hero__vignette" aria-hidden="true"></div>
           <div class="hero__scrim" aria-hidden="true"></div>
 
           <div class="hero__type">
@@ -47,7 +50,7 @@
           </div>
 
           <div class="hero__meta">
-            <span id="heroProgress">00</span><span class="hero__metaDim"> / 360°</span>
+            <span id="heroProgress">01</span><span class="hero__metaDim" id="heroMetaSuffix"></span>
           </div>
         </div>
       </section>

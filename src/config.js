@@ -17,6 +17,60 @@
  *  Nothing else changes — the scrubber already reads from here.
  */
 
+/**
+ *  ── THE HERO: PHOTOS ────────────────────────────────────────────────────────
+ *
+ *  Drop your shots in `public/photos/` and list them here, in the order they
+ *  should appear. Scroll cross-dissolves through them. Any number works —
+ *  three is enough to feel like a sequence, six or seven is plenty.
+ *
+ *  Set `enabled: false` to fall back to the WebGL stand-in.
+ */
+export const heroPhotos = {
+  enabled: true,
+  sources: [
+    '/photos/hero-01.jpg',
+    '/photos/hero-02.jpg',
+    '/photos/hero-03.jpg',
+    '/photos/hero-04.jpg',
+  ],
+
+  // How much each shot drifts in scale across its segment. 0 = static.
+  drift: 0.09,
+
+  /**
+   *  How far each edge of the photo dissolves into the page, so no straight
+   *  bitmap seam is ever visible.
+   *    x       0..0.5  side falloff, as a fraction of image width
+   *    y       0..0.5  top/bottom falloff, as a fraction of image height
+   *    top     0..1    how hard the top edge is erased
+   *    bottom  0..1    how hard the bottom edge is erased (higher, so the
+   *                    subject sinks into the page rather than being cut off)
+   */
+  feather: { x: 0.2, y: 0.1, top: 0.8, bottom: 0.95 },
+
+  /**
+   *  The grade that makes white-studio photography sit on an ink-black page.
+   *  Tune here rather than re-exporting images.
+   *
+   *    grayscale  0..1   how far to pull colour out (1 = fully mono)
+   *    contrast   ~1.0+  punch; >1.3 starts blocking up shadows
+   *    brightness ~0..1  <1 sinks the studio backdrop toward the page
+   *    navy       0..1   strength of the navy multiply in the shadows
+   *    vignette   0..1   edge falloff — the main tool for killing a white
+   *                      backdrop. Lower it if your shots are already dark.
+   *    emerald    0..1   strength of the screened emerald rim wash
+   */
+  grade: {
+    grayscale: 0.85,
+    contrast: 1.28,
+    brightness: 0.52,
+    navy: 0.5,
+    vignette: 1,
+    emerald: 0.18,
+  },
+};
+
 export const heroSequence = {
   useFrames: false,
   // Frames are requested as `${basePath}${prefix}${paddedIndex}.${ext}`
